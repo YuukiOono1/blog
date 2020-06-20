@@ -1,77 +1,76 @@
-@extends('layouts.app')
+@extends('layouts')
+
+@section('title', 'ユーザー登録')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+<section class="form-elegant">
+
+    <!-- Grid row -->
+    <div class="row mt-4">
+
+        <!-- Grid column -->
+        <div class="mx-auto col-md-9 col-lg-7 col-xl-5">
+
+            <!--Form without header-->
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
+
+                    <!--Header-->
+                    <div class="text-center">
+                        <h3 class="dark-grey-text mb-5"><strong>新規登録</strong></h3>
+                    </div>
+
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="md-form">
+                            <input type="text" id="name" name="name" class="@error('name') is-valid @enderror form-control" required value="{{ old('name') }}">
+                            <label for="name">名前</label>
+                            @error('name')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="md-form">
+                            <input type="email" id="email" name="email" class="@error('email') is-valid @enderror form-control" required value="{{ old('email') }}">
+                            <label for="email">メールアドレス</label>
+                            @error('email')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="md-form">
+                            <input type="password" id="password" name="password" class="@error('password') is-valid @enderror form-control" required>
+                            <label for="password">パスワード</label>
+                            @error('password')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
+                        <div class="md-form">
+                            <input type="password" id="password_confirmation" name="password_confirmation" class="@error('password_confirmation') is-valid @enderror form-control" required>
+                            <label for="password_confirmation">パスワード(確認)</label>
+                            @error('password_confirmation')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
+                        <button type="submit" class="btn default-color btn-block btn-rounded z-depth-1a">新規登録</button>
                     </form>
+                    <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2"> or Sign up
+                        with:</p>
+
+                    <!--Footer-->
+                    <div class="modal-footer mx-5 pt-3 mb-1">
+                        <p class="font-small grey-text d-flex justify-content-end">Already a member? <a href="#" class="blue-text ml-1">
+                        Sign In</a></p>
+                    </div>
+
                 </div>
-            </div>
+
+             </div>
+            <!--/Form without header-->
+
         </div>
+        <!-- Grid column -->
+
     </div>
-</div>
+    <!-- Grid row -->
+</section>
 @endsection
