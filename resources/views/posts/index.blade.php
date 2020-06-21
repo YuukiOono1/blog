@@ -24,7 +24,7 @@
                     <h4 class="card-title mt-2">{{ $post->title }}</h4>
                 </a>
                 <!--Text-->
-                <p class="card-text">{{ $post->body }}</p>
+                <p class="card-text">{{ mb_substr($post->body, 0, 100) }}・・・</p>
             </div>
             <div class="card-footer">
                 <small class="text-muted">
