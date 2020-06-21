@@ -13,4 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes();
-Route::get('/', 'PostController@index');
+Route::get('/', 'PostController@index')->name('posts.index');
+Route::resource('/posts', 'PostController',
+    ['only' => ['create', 'store', 'edit', 'update', 'destroy', 'show']])->middleware('auth');

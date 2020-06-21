@@ -29,7 +29,7 @@
 
       @auth
       <li class="nav-item">
-        <a class="nav-link" href="#">投稿する</a>
+        <a class="nav-link" href="{{ route('posts.create') }}">投稿する</a>
       </li>
       @endauth
 

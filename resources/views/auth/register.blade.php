@@ -51,7 +51,7 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <button type="submit" class="btn default-color btn-block btn-rounded z-depth-1a">新規登録</button>
+                        <button type="submit" class="btn default-color btn-block btn-rounded z-depth-1a"><span class="white-text">新規登録</span></button>
                     </form>
                     <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2"> or Sign up
                         with:</p>

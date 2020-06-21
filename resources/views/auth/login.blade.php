@@ -22,14 +22,20 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="md-form">
-                            <input type="email" id="email" name="email" class="form-control" required value="{{ old('email') }}">
+                            <input type="email" id="email" name="email" class="@error('email') is-valid @enderror form-control" required value="{{ old('email') }}">
                             <label for="email">メールアドレス</label>
+                            @error('email')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="md-form">
-                            <input type="password" id="password" name="password" class="form-control" required>
+                            <input type="password" id="password" name="password" class="@error('passwords') is-valid @enderror form-control" required>
                             <label for="password">パスワード</label>
+                            @error('password')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
-                        <button type="submit" class="btn default-color btn-block btn-rounded z-depth-1a">ログイン</button>
+                        <button type="submit" class="btn default-color btn-block btn-rounded z-depth-1a"><span class="white-text">ログイン</span></button>
                     </form>
                     <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2"> or Sign up
                         with:</p>

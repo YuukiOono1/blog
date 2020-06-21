@@ -7,20 +7,22 @@
     @foreach ($posts as $post)
     <div class="col mb-4 mt-4">
         <!-- Card -->
-        <div class="card">
+        <div class="card h-100">
 
             <!--Card image-->
             <div class="view overlay">
-                <img class="card-img-top" src="" alt="image">
-                <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
+                <!--バイナリデータとして表示-->
+                <a href="{{ route('posts.show', ['post' => $post]) }}">
+                    <img class="card-img-top" src="data:image/png;base64, {{ $post->file_name }}" height=200 alt="image">
                 </a>
             </div>
 
             <!--Card content-->
             <div class="card-body">
                 <!--Title-->
-                <h4 class="card-title">{{ $post->title }}</h4>
+                <a href="{{ route('posts.show', ['post' => $post]) }}">
+                    <h4 class="card-title mt-2">{{ $post->title }}</h4>
+                </a>
                 <!--Text-->
                 <p class="card-text">{{ $post->body }}</p>
             </div>
@@ -33,4 +35,5 @@
     </div>
     @endforeach
 </div>
+{{ $posts->links() }}
 @endsection
