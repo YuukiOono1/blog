@@ -3,12 +3,19 @@
 @section('title', '一覧画面')
 
 @section('content')
+<!--search-->
 <form action="/" mehtod="GET" class="form-inline mt-5 mb-4">
   <i class="fas fa-search text-default" aria-hidden="true"></i>
-  <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="フリーワードで検索する"
+  <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="フリーワードで検索する (例 : PHP、Ruby、Python)"
     aria-label="Search" name="keyword" value="{{ $keyword }}">
     <input type="submit" value="検索">
 </form>
+
+@if (isset($keyword))
+    <p>検索ワード : {{ $keyword }}</p>
+    <p>該当件数は{{ $posts->count() }}件です。</p>
+@endif
+<!--search-->
 
 <div class="row row-cols-2 row-cols-md-3">
     @foreach ($posts as $post)
@@ -31,7 +38,7 @@
                     <h4 class="card-title mt-2">{{ $post->title }}</h4>
                 </a>
                 <!--Text-->
-                <p class="card-text">{{ mb_substr($post->body, 0, 100) }}・・・</p>
+                <p class="card-text">{{ mb_substr($post->body, 0, 50) }}・・・</p>
             </div>
 
             <div class="card-footer">
@@ -39,7 +46,7 @@
                     {{ $post->created_at->format('Y/m/d')}}
                 </small>
 
-                @if (Auth::id() === $post->user_id )
+                @if (Auth::id() === $post->user_id)
                     <!-- dropdown -->
                     <small class="dropdown float-right">
                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

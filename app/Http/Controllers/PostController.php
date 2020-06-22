@@ -14,7 +14,7 @@ class PostController extends Controller
         $keyword = $request->input('keyword');
         
         // キーワードがあれば
-        if (!empty($keyword))
+        if (isset($keyword))
         {
             $posts = Post::where('title', 'like', '%' .$keyword. '%')
                             ->orderby('created_at', 'desc')
