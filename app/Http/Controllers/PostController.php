@@ -8,12 +8,23 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::orderBy('created_at', 'desc')
-                        ->paginate(6);
-
-        return view('posts.index', ['posts' => $posts]);
+        // キーワード取得
+        $keyword = $request->input('keyword');
+        
+        // キーワードがあれば
+        if (!empty($keyword))
+        {
+            $posts = Post::where('title', 'like', '%' .$keyword. '%')
+                            ->orderby('created_at', 'desc')
+                            ->paginate(6);
+        } else {
+            $posts = Post::orderby('created_at', 'desc')
+                            ->paginate(6);
+        }
+        
+        return view('posts.index', ['posts' => $posts, 'keyword' => $keyword]);
     }
 
     public function create()
