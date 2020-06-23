@@ -19,6 +19,7 @@ class PostController extends Controller
             $posts = Post::where('title', 'like', '%' .$keyword. '%')
                             ->orderby('created_at', 'desc')
                             ->paginate(6);
+        // キーワードがなければ
         } else {
             $posts = Post::orderby('created_at', 'desc')
                             ->paginate(6);
