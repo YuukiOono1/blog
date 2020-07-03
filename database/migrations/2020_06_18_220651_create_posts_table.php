@@ -13,6 +13,9 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('users')) {
+            return;
+        }
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');

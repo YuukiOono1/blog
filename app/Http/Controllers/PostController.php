@@ -16,16 +16,16 @@ class PostController extends Controller
         // キーワードがあれば
         if (isset($keyword))
         {
-            // スペースを除く
-            $word = explode(" ", $keyword);
-
             // 全角のスペースを半角にする
-            $keywords = str_replace("　", " ", $words);
+            $word = str_replace("　", " ", $keyword);
 
-            $posts = Post::where(function($query) use($keyword){
+            // スペースを除く
+            $keywords = explode(" ", $word);
+
+            $posts = Post::where(function($query) use($keywords){
 
                 foreach($keywords as $keyword) {
-                    // DBに対する命
+                    // DBに対する命令
                     $query->orwhere('title', 'like', "%" .$keyword. "%")
                         ->orwhere('body', 'like', "%" .$keyword. "%");
                 }
