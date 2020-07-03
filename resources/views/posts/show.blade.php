@@ -3,7 +3,7 @@
 @section('title', '詳細画面')
 
 @section('content')
-<div class="mt-4 mb-4 align-items-center">
+<div class="mt-4 mx-auto d-flex align-items-center w-75">
   <div class="card">
     <img src="data:image/png;base64,{{ $post->file_name }}" class="card-img-top" height=500 alt="file_name">
     <div class="card-body">

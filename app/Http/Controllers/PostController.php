@@ -16,23 +16,9 @@ class PostController extends Controller
         // キーワードがあれば
         if (isset($keyword))
         {
-            // スペースを除く
-            $words = explode(" ", $keyword);
-
-            // 全角のスペースを半角にする
-            $keywords = str_replace("　", " ", $words);
-
-            $posts = Post::where(function($query) use($keywords){
-
-                foreach($keywords as $keyword){
-                    // DBに対する命令文
-                    $query->orWhere('title', 'like', "%" .$keyword. "%")
-                          ->orWhere('body', 'like', "%" .$keyword. "%");
-                }
-
-                return $query;
-            })->paginate(6);
-
+            $posts = Post::where('title', 'like', '%' .$keyword. '%')
+                            ->orderby('created_at', 'desc')
+                            ->paginate(6);
         // キーワードがなければ
         } else {
             $posts = Post::orderby('created_at', 'desc')

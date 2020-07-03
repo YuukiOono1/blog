@@ -53,6 +53,15 @@
                         </div>
                         <button type="submit" class="btn default-color btn-block btn-rounded z-depth-1a"><span class="white-text">新規登録</span></button>
                     </form>
+                    <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2"> or Sign up
+                        with:</p>
+
+                    <!--Footer-->
+                    <div class="modal-footer mx-5 pt-3 mb-1">
+                        <p class="font-small grey-text d-flex justify-content-end">Already a member? <a href="#" class="blue-text ml-1">
+                        Sign In</a></p>
+                    </div>
+
                 </div>
 
              </div>

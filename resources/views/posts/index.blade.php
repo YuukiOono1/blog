@@ -11,7 +11,6 @@
     <input type="submit" value="検索">
 </form>
 
-
 @if (isset($keyword))
     <p>検索ワード : {{ $keyword }}</p>
     <p>該当件数は{{ $posts->count() }}件です。</p>
