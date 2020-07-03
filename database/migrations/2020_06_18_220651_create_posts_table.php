@@ -13,10 +13,6 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        if (Schema::hasTable('users')) {
-            // テーブルが存在していればリターン
-            return;
-        }
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
