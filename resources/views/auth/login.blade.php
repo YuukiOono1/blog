@@ -42,7 +42,7 @@
 
                     <!--Footer-->
                     <div class="modal-footer mx-5 pt-3 mb-1">
-                        <p class="font-small grey-text d-flex justify-content-end">Already a member? <a href="#" class="blue-text ml-1">
+                        <p class="font-small grey-text d-flex justify-content-end">Already a member? <a href="{{ route('register') }}" class="blue-text ml-1">
                         Sign In</a></p>
                     </div>
 
