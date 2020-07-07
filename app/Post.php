@@ -17,4 +17,9 @@ class Post extends Model
     {
         return $this->belongsToMany('App\Category');
     }
+
+    protected $fillable = [
+        'title',
+        'body',
+    ];
 }

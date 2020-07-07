@@ -9,6 +9,9 @@
     <div class="card-body">
       <h5 class="card-title">{{ $post->title }}</h5>
       <p class="card-text mt-3">{{ $post->body }}</p>
+      @foreach($post->category as $category)
+        <a href="{{ route('categories.show', ['category' => $category]) }}" class="rounded p-1 border border-dark text-muted">#{{ $category->name }}</a>
+      @endforeach
     </div>
     <div class="card-footer">
       <small class="text-muted">

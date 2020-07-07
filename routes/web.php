@@ -18,3 +18,4 @@ Route::resource('/posts', 'PostController',
     ['only' => ['create', 'store', 'edit', 'update', 'destroy', 'show']])->middleware('auth');
 Route::resource('/posts', 'PostController',
     ['only' => ['show']]);
+Route::get('/categories/{category}', 'CategoryController@show')->name('categories.show');

@@ -39,6 +39,10 @@
                 </a>
                 <!--Text-->
                 <p class="card-text">{{ mb_substr($post->body, 0, 50) }}・・・</p>
+                <!--Category-->
+                @foreach($post->category as $category)
+                    <a href="{{ route('categories.show', ['category' => $category]) }}" class="rounded p-1 border border-dark text-muted">#{{ $category->name }}</a>
+                @endforeach
             </div>
 
             <div class="card-footer">
