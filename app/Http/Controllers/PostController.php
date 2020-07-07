@@ -57,7 +57,9 @@ class PostController extends Controller
         $post->save();
 
         // カテゴリーの取得
-        $category = $request->input('category');
+        $category_name = $request->input('category');
+        // DBに存在するかどうか
+        $category = Category::firstOrCreate(['name' => $category_name]);
         // 中間テーブルとカテゴリーテーブルに値を挿入
         $post->category()->attach($category);
         
