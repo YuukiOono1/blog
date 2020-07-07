@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Category;
 use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
 
@@ -54,6 +55,14 @@ class PostController extends Controller
         $post->file_name = base64_encode(file_get_contents($request->file_name)); // バイナリデータとしてDBに保存
         $post->user_id = $request->user()->id;
         $post->save();
+
+        // カテゴリーの取得
+        $category_name = $request->input('category');
+        // DBに存在するかどうか
+        $category = Category::firstOrCreate(['name' => $category_name]);
+        // 中間テーブルとカテゴリーテーブルに値を挿入
+        $post->category()->attach($category);
+        
         return redirect()->route('posts.index');
     }
 
@@ -66,9 +75,11 @@ class PostController extends Controller
     {
         $post->title = $request->title;
         $post->body = $request->body;
+        $post->category = $request->category;
         $post->file_name = base64_encode(file_get_contents($request->file_name)); // バイナリデータとしてDBに保存
         $post->user_id = $request->user()->id;
         $post->save();
+
         return redirect()->route('posts.index');
     }
 

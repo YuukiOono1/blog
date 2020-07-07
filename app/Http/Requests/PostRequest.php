@@ -27,6 +27,7 @@ class PostRequest extends FormRequest
             'title' => 'required|max:50',
             'body' => 'required|max:300',
             'file_name' => 'required',
+            'category' => 'max:10',
         ];
     }
 }

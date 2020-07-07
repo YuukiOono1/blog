@@ -21,6 +21,10 @@
                         <label>画像</label><br>
                         <input type="file" id="file_name" name="file_name">
                         <div class="form-group mt-4">
+                            <label>タグ</label><br>
+                            <input type="text" name="category" value="{{ old('title') }}">
+                        </div>
+                        <div class="form-group mt-4">
                             <label for="exampleFormControlTextarea1">本文</label>
                             <textarea class="form-control rounded-0 @error('body') is-valid @enderror" name="body" id="exampleFormControlTextarea1" rows="14" required>{{ $post->body }}</textarea>
                             @error('body')
