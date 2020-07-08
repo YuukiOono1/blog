@@ -1,9 +1,12 @@
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark default-color">
 
-  <!-- Navbar brand -->
-  <a class="navbar-brand" href="/"><i class="far fa-edit mr-2"></i>blog</a>
+  @include('sidebar')
 
+  <span class="navbar-toggler-icon" onclick="openNav()"></span>
+
+  <!-- Navbar brand -->
+  <a class="navbar-brand ml-4" href="/">blog<i class="far fa-edit ml-2"></i></a>
   <!-- Collapse button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
     aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">

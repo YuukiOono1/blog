@@ -3,6 +3,7 @@
 @section('title', 'カテゴリー詳細')
 
 @section('content')
+
 <div class="card mt-3">
     <div class="card-body">
         <p>カテゴリーワード : {{ $category->name }}</p>

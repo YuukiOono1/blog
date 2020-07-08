@@ -13,13 +13,15 @@
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
-    <link href="resources/css/style.css" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 
 <body>
     @include('nav')
-    <div class="container">
-        @yield('content')
+    <div id="main">
+        <div class="container">
+            @yield('content')
+        </div>
     </div>
 
     <!-- JQuery -->
@@ -30,6 +32,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js"></script>
+    <!-- Custom JavaScript(original) -->
+    <script src="{{ asset('js/slide.js') }}"></script>
 </body>
 
 </html>
