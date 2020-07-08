@@ -20,8 +20,10 @@
                         <label>画像</label><br>
                         <input type="file" id="file_name" name="file_name">
                         <div class="form-group mt-4">
-                            <label>タグ</label><br>
-                            <input type="text" name="category" value="{{ old('') }}">
+                            @for($i=1; $i<=3; $i++)
+                                <label>タグ{{ $i }}</label>
+                                <input type="text" name="categories[]" class="mr-1" value="{{ old('categories[]'.$i) }}" placeholder="タグ名が入力できます">
+                            @endfor
                         </div>
                         <div class="form-group mt-4">
                             <label for="exampleFormControlTextarea1">本文</label>

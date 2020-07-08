@@ -50,18 +50,27 @@ class PostController extends Controller
 
     public function store(PostRequest $request, Post $post)
     {
-        $post->title = $request->title;
-        $post->body = $request->body;
+        $post->fill($request->all());
         $post->file_name = base64_encode(file_get_contents($request->file_name)); // バイナリデータとしてDBに保存
         $post->user_id = $request->user()->id;
         $post->save();
 
-        // カテゴリーの取得
-        $category_name = $request->input('category');
-        // DBに存在するかどうか
-        $category = Category::firstOrCreate(['name' => $category_name]);
+        // カテゴリーを配列で取得、例えば[PHP, Python, Ruby]
+        $categories_name = $request->input('categories');
+        foreach ($categories_name as $category_name) {
+            // null許容
+            if ($category_name == null) {
+                continue;
+            } else {
+                // DBに存在するかどうか
+                $category = Category::firstOrCreate([
+                    'name' => $category_name
+                ]);
+            $category_ids[] = $category->id;
+            }
+        }
         // 中間テーブルとカテゴリーテーブルに値を挿入
-        $post->category()->attach($category);
+        $post->category()->attach($category_ids);
         
         return redirect()->route('posts.index');
     }
@@ -73,20 +82,29 @@ class PostController extends Controller
 
     public function update(PostRequest $request, Post $post)
     {
-        $post->title = $request->title;
-        $post->body = $request->body;
+        $post->fill($request->all());
         $post->file_name = base64_encode(file_get_contents($request->file_name)); // バイナリデータとしてDBに保存
         $post->user_id = $request->user()->id;
         $post->save();
 
         // すでにあるカテゴリーの削除
         $post->category()->detach();
-        // カテゴリーの取得
-        $category_name = $request->input('category');
-        // DBに存在するかどうか
-        $category = Category::firstOrCreate(['name' => $category_name]);
+        // カテゴリーを配列で取得、例えば[PHP, Python, Ruby]
+        $categories_name = $request->input('categories');
+        foreach ($categories_name as $category_name) {
+            // null許容
+            if ($category_name == null) {
+                continue;
+            } else {
+                // DBに存在するかどうか
+                $category = Category::firstOrCreate([
+                    'name' => $category_name
+                ]);
+            $category_ids[] = $category->id;
+            }
+        }
         // 中間テーブルとカテゴリーテーブルに値を挿入
-        $post->category()->attach($category);
+        $post->category()->attach($category_ids);
 
         return redirect()->route('posts.index');
     }
