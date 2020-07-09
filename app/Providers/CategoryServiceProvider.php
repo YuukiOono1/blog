@@ -4,9 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use App\Post;
+use App\Category;
 
-class PostServiceProvider extends ServiceProvider
+class CategoryServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -15,7 +15,7 @@ class PostServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        //
     }
 
     /**
@@ -26,10 +26,11 @@ class PostServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('sidebar', function($view) {
-            // カテゴリーの名前を取得してくる
-            $post = Post::All();
-            dd($post);
-            $view->with('post', $post);
+            // カテゴリーのnameカラムを重複させずに取得
+            $categories_name = Category::all()
+                ->sortBy('name')
+                ->groupBy('name');
+            $view->with('categories_name', $categories_name);
         });
     }
 }

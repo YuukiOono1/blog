@@ -11,7 +11,7 @@
     </div>
 </div>
 <div class="row row-cols-2 row-cols-md-3">
-    @foreach ($category->post as $post)
+    @foreach ($posts as $post)
     <div class="col mb-4 mt-4">
         <!-- Card -->
         <div class="card h-100">
@@ -92,4 +92,5 @@
     </div>
     @endforeach
 </div>
+{{ $posts->links() }}
 @endsection
