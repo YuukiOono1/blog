@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+
+    // CRUDに一括でポリシーによる認可制御
+    public function __construct()
+    {
+        // ＊ユーザーが認証済みであることが必須
+        $this->authorizeResource(Post::class, 'post');
+    }
+
     public function index(Request $request)
     {
         // キーワード取得
