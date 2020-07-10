@@ -43,8 +43,9 @@
                 @foreach($post->category as $category)
                     <a href="{{ route('categories.show', ['category' => $category]) }}" class="rounded p-1 border border-dark text-muted">#{{ $category->name }}</a>
                 @endforeach
+                <!--User-->
                 <p class="mt-3">
-                    <a class="float-left text-muted"><i class="fas fa-user-circle fa-lg mr-2"></i>{{ $post->user->name }}</a>
+                    <a href="{{ route('users.show', ['name' => $post->user]) }}" class="float-left text-muted"><i class="fas fa-user-circle fa-lg mr-2"></i>{{ $post->user->name }}</a>
                 </p>
             </div>
 
