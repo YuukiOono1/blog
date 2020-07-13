@@ -21,7 +21,7 @@
         @foreach($posts as $post)
             @if (Auth::id() === $post->user_id)
                 <a href="{{ route('users.edit', ['user' => $user]) }}" class="text-muted">ユーザーネームの変更 / </a>
-                <a href="" class="text-muted">パスワードの再設定 / </a>
+                <a href="{{ route('password.request') }}" class="text-muted">パスワードの再設定 / </a>
                 <a href="" class="text-muted">メールアドレスの変更 / </a>
                 <a class="text-muted" data-toggle="modal" data-target="#modal-delete-{{ $user->id }}">ユーザーの退会 / </a>
             @endif
@@ -41,7 +41,7 @@
                     @csrf
                     @method('DELETE')
                     <div class="modal-body">
-                        ユーザーを退会します。（投稿した記事も削除されます。)
+                        ユーザーを退会しますか？（投稿した記事も削除されます。)
                     </div>
                     <div class="modal-footer justify-content-between">
                         <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
