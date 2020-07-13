@@ -4,12 +4,54 @@
 
 @section('content')
 <div class="card mt-3">
+    @foreach($posts as $post)
+        @if (Auth::id() === $post->user_id)
+            <div class="mx-auto mt-4">
+                <h1>マイページ</h1>
+            </div>
+        @endif
+    @endforeach
     <div class="card-body mx-auto">
         <i class="fas fa-user-circle fa-3x"></i>
     </div>
     <div class="mx-auto">
         <p class="lead">{{ $user->name }}</p>
     </div>
+    <div class="mx-auto mb-2">
+        @foreach($posts as $post)
+            @if (Auth::id() === $post->user_id)
+                <a href="{{ route('users.edit', ['user' => $user]) }}" class="text-muted">ユーザーネームの変更 / </a>
+                <a href="" class="text-muted">パスワードの再設定 / </a>
+                <a href="" class="text-muted">メールアドレスの変更 / </a>
+                <a class="text-muted" data-toggle="modal" data-target="#modal-delete-{{ $user->id }}">ユーザーの退会 / </a>
+            @endif
+        @endforeach
+    </div>
+
+    <!-- modal -->
+    <div id="modal-delete-{{ $user->id }}" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form method="POST" action="{{ route('users.destroy', ['user' => $user]) }}">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-body">
+                        ユーザーを退会します。（投稿した記事も削除されます。)
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
+                        <button type="submit" class="btn btn-danger">削除する</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- modal -->
 </div>
 <div class="row row-cols-2 row-cols-md-3">
     @foreach ($posts as $post)
@@ -39,7 +81,7 @@
                 @endforeach
                 <!--User-->
                 <p class="mt-3">
-                    <a href="{{ route('users.show', ['name' => $post->user]) }}" class="float-left text-muted"><i class="fas fa-user-circle fa-lg mr-2"></i>{{ $post->user->name }}</a>
+                    <a href="{{ route('users.show', ['user' => $post->user]) }}" class="float-left text-muted"><i class="fas fa-user-circle fa-lg mr-2"></i>{{ $post->user->name }}</a>
                 </p>
             </div>
 
