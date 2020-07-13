@@ -1,47 +1,54 @@
-@extends('layouts.app')
+@extends('layouts')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+<section class="form-elegant">
+
+    <!-- Grid row -->
+    <div class="row mt-4">
+
+        <!-- Grid column -->
+        <div class="mx-auto col-md-9 col-lg-7 col-xl-5">
+
+            <!--Form without header-->
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
 
                 <div class="card-body">
+
+                    <!--Header-->
+                    <div class="text-center">
+                        <h3 class="dark-grey-text mb-5"><strong>パスワードの再設定</strong></h3>
+                    </div>
+
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    <div class="card-text alert alert-success">
+                        {{ session('status') }}
+                    </div>
                     @endif
 
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="md-form">
+                            <input type="email" id="email" name="email" class="@error('email') is-valid @enderror form-control" required>
+                            <label for="name">メールアドレス</label>
+                            @error('name')
+                                <div class="alert alert-danger">{{ $email }}</div>
+                            @enderror
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
+                        <button type="submit" class="btn default-color btn-block btn-rounded z-depth-1a"><span class="white-text">送信</span></button>
                     </form>
+                    <!--Footer-->
+                    <div class="modal-footer mx-5 pt-3 mb-1">
+                        <a href="{{ route('users.show', ['user' => Auth::id()]) }}" class="blue-text ml-1">マイページへ戻る</a>
+                    </div>
                 </div>
-            </div>
+
+             </div>
+            <!--/Form without header-->
+
         </div>
+        <!-- Grid column -->
+
     </div>
-</div>
+    <!-- Grid row -->
+</section>
 @endsection
