@@ -19,4 +19,5 @@ Route::resource('/posts', 'PostController',
 Route::resource('/posts', 'PostController',
     ['only' => ['show']]);
 Route::get('/categories/{category}', 'CategoryController@show')->name('categories.show');
-Route::get('/users/{name}', 'UserController@show')->name('users.show');
+Route::resource('/users', 'UserController',
+    ['only' => ['edit', 'update', 'destroy', 'show']])->middleware('auth');
