@@ -45,7 +45,7 @@
                 @endforeach
                 <!--User-->
                 <p class="mt-3">
-                    <a href="{{ route('users.show', ['name' => $post->user]) }}" class="float-left text-muted"><i class="fas fa-user-circle fa-lg mr-2"></i>{{ $post->user->name }}</a>
+                    <a href="{{ route('users.show', ['user' => $post->user]) }}" class="float-left text-muted"><i class="fas fa-user-circle fa-lg mr-2"></i>{{ $post->user->name }}</a>
                 </p>
             </div>
 
