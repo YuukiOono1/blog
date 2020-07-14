@@ -41,7 +41,7 @@
                     @csrf
                     @method('DELETE')
                     <div class="modal-body">
-                        ユーザーを退会しますか？（投稿した記事も削除されます。)
+                        ユーザーを退会しますか？（投稿した記事も削除されます)
                     </div>
                     <div class="modal-footer justify-content-between">
                         <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
