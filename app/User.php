@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Mail\TestMail;
+use App\Mail\PasswordMail;
 use App\Notifications\PasswordResetNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -47,6 +47,6 @@ class User extends Authenticatable
 
     public function sendPasswordResetNotification($token)
     {
-        $this->notify(new PasswordResetNotification($token, new TestMail()));
+        $this->notify(new PasswordResetNotification($token, new PasswordMail()));
     }
 }
