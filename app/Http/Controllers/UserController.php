@@ -18,7 +18,7 @@ class UserController extends Controller
         $posts = Post::with('user')->orderBy('created_at', 'desc')
             ->whereHas('user', function ($query) use ($user) {
                 $query->where('name', $user->name);
-            })->paginate(1);
+            })->paginate(6);
 
         return view('users.show', ['user' => $user, 'posts' => $posts]);
 
