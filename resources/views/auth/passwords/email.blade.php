@@ -1,5 +1,7 @@
 @extends('layouts')
 
+@section('title', 'パスワード再設定')
+
 @section('content')
 <section class="form-elegant">
 
