@@ -2,7 +2,7 @@
 
 namespace App\Notifications;
 
-use App\Mail\Testmail;
+use App\Mail\PasswordMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -20,7 +20,7 @@ class PasswordResetNotification extends Notification
      *
      * @return void
      */
-    public function __construct(string $token, Testmail $mail)
+    public function __construct(string $token, PasswordMail $mail)
     {
         $this->token = $token;
         $this->mail = $mail;
