@@ -4,28 +4,16 @@
 
 @section('content')
 <div class="card mt-3">
-    @foreach($posts as $post)
-        @if (Auth::id() === $post->user_id)
-            <div class="mx-auto mt-4">
-                <h1>マイページ</h1>
-            </div>
-        @endif
-    @endforeach
+    @if (Auth::id() === $user->id )
+    <div class="mx-auto mt-4">
+        <h1>マイページ</h1>
+    </div>
+    @endif
     <div class="card-body mx-auto">
         <i class="fas fa-user-circle fa-3x"></i>
     </div>
     <div class="mx-auto">
         <p class="lead">{{ $user->name }}</p>
-    </div>
-    <div class="mx-auto mb-2">
-        @foreach($posts as $post)
-            @if (Auth::id() === $post->user_id)
-                <a href="{{ route('users.edit', ['user' => $user]) }}" class="text-muted">ユーザーネームの変更 / </a>
-                <a href="{{ route('password.request') }}" class="text-muted">パスワードの再設定 / </a>
-                <a href="" class="text-muted">メールアドレスの変更 / </a>
-                <a class="text-muted" data-toggle="modal" data-target="#modal-delete-{{ $user->id }}">ユーザーの退会 / </a>
-            @endif
-        @endforeach
     </div>
 
     <!-- modal -->
