@@ -38,10 +38,6 @@
                         </div>
                         <button type="submit" class="btn default-color btn-block btn-rounded z-depth-1a"><span class="white-text">送信</span></button>
                     </form>
-                    <!--Footer-->
-                    <div class="modal-footer mx-5 pt-3 mb-1">
-                        <a href="{{ route('users.show', ['user' => Auth::id()]) }}" class="blue-text ml-1">マイページへ戻る</a>
-                    </div>
                 </div>
 
              </div>
