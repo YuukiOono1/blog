@@ -37,8 +37,9 @@
                         </div>
                         <button type="submit" class="btn default-color btn-block btn-rounded z-depth-1a"><span class="white-text">ログイン</span></button>
                     </form>
-                    <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2"> or Sign up
-                        with:</p>
+                    <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2">
+                        <a href="{{ route('password.request') }}">パスワード忘れた方はこちら</a>
+                    </p>
 
                     <!--Footer-->
                     <div class="modal-footer mx-5 pt-3 mb-1">
