@@ -2,7 +2,7 @@
 
 namespace App\Notifications;
 
-use App\Mail\PasswordMail;
+use App\Mail\PasswordResetMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -20,7 +20,7 @@ class PasswordResetNotification extends Notification
      *
      * @return void
      */
-    public function __construct(string $token, PasswordMail $mail)
+    public function __construct(string $token, PasswordResetMail $mail)
     {
         $this->token = $token;
         $this->mail = $mail;
@@ -51,11 +51,11 @@ class PasswordResetNotification extends Notification
             ->subject('パスワード再設定') // メールのタイトル
             ->text('emails.password_reset') // テンプレート（平文）
             ->with([    // 渡すデータ
-                'url' => route('password.reset', [
+                'url' => route('password.reset', [ // URL
                     'token' => $this->token,
                     'email' => $notifiable->email,
                 ]),
-                'count' => config('auth.passwords.users.expire'),
+                'count' => config('auth.passwords.users.expire'), // token有効時間
             ]);
     }
 
