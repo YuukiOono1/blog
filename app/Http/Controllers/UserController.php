@@ -21,21 +21,21 @@ class UserController extends Controller
             })->paginate(6);
 
         return view('users.show', ['user' => $user, 'posts' => $posts]);
-
-        // カテゴリーの詳細と同じで、 下記のようにならないの何故？
-        // public function show(User $user) {
-                // 処理
-        // }
     }
 
-    public function edit(User $user)
+    public function edit(User $user, Request $request)
     {
-        return view('users.edit', ['user' => $user]);
+        $data = $request->all();
+        $request->session()->put($data); 
+
+        return view('users.edit', ['user' => $user, 'data' => $data]);
     }
 
     public function update(UserRequest $request, User $user)
     {
-        $user->fill($request->all());
+        $data = session()->all();
+        $user->name = $data["name"];
+        $user->email = $data["email"];
         $user->save();
         return redirect()->route('users.show', ['user' => $user]);
     }
