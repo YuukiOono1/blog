@@ -7,6 +7,10 @@ use App\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserDeleteMail;
+use App\Mail\UserUpdateMail;
+
 class UserController extends Controller
 {
     public function show($id) 
@@ -37,12 +41,18 @@ class UserController extends Controller
         $user->name = $data["name"];
         $user->email = $data["email"];
         $user->save();
+        $to = $user->email;
+        $new_name = $user->name;
+        $new_email = $user->email;
+        Mail::to($to)->send(new UserUpdateMail($new_name, $new_email));
         return redirect()->route('users.show', ['user' => $user]);
     }
 
     public function destroy(User $user)
     {
         $user->delete();
+        $to = $user->email;
+        Mail::to($to)->send(new UserDeleteMail());
         return redirect()->route('users.show', ['user' => $user]);
     }
 }
