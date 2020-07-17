@@ -35,7 +35,7 @@ class UserController extends Controller
         return view('users.edit', ['user' => $user, 'data' => $data]);
     }
 
-    public function update(UserRequest $request, User $user)
+    public function update(User $user)
     {
         $data = session()->all();
         $user->name = $data["name"];
