@@ -21,11 +21,11 @@
     <ul class="nav nav-tabs md-tabs nav-justified grey lighten-2" role="tablist">
         <li class="nav-item">
             <a class="nav-link active text-muted" data-toggle="tab" href="#panel555" role="tab">
-            <i class="fas fa-user-circle pr-2"></i>記事一覧</a>
+            <i class="fas fa-edit pr-2"></i>記事一覧</a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-muted" data-toggle="tab" href="#panel666" role="tab">
-            <i class="fas fa-edit pr-2"></i>登録情報</a>
+            <i class="fas fa-user-circle pr-2"></i>登録情報</a>
         </li>
     </ul>
     <!-- Nav tabs -->
@@ -148,38 +148,38 @@
                         @enderror
                     </div>
                     <button type="submit" class="btn default-color btn-block btn-rounded z-depth-1a"><span class="white-text">入力内容を確認する</span></button>
-                    <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-4">
-                        <a href="{{ route('password.request') }}">パスワードを変更される方はこちら</a>
-                    </p>
-                    <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2" data-toggle="modal" data-target="#modal-delete-{{ $user->id }}">
-                        <a class="text-danger">退会する方はこちら</a>
-                    </p>
+                </form>
+                <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-4">
+                    <a href="{{ route('password.request') }}">パスワードを変更される方はこちら</a>
+                </p>
+                <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2" data-toggle="modal" data-target="#modal-delete-{{ $user->id }}">
+                    <a class="text-danger">退会する方はこちら</a>
+                </p>
 
-                    <!-- modal -->
-                    <div id="modal-delete-{{ $user->id }}" class="modal fade" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                </div>
-                                <form method="POST" action="{{ route('users.destroy', ['user' => $user]) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <div class="modal-body">
-                                        ユーザーを退会しますか？（投稿した記事も削除されます）
-                                    </div>
-                                    <div class="modal-footer justify-content-between">
-                                        <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
-                                        <button type="submit" class="btn btn-danger">削除する</button>
-                                    </div>
-                                </form>
+                <!-- modal -->
+                <div id="modal-delete-{{ $user->id }}" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                                    <span aria-hidden="true">×</span>
+                                </button>
                             </div>
+                            <form method="POST" action="{{ route('users.destroy', ['user' => $user]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <div class="modal-body">
+                                    ユーザーを退会しますか？（投稿した記事も削除されます）
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                    <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
+                                    <button type="submit" class="btn btn-danger">削除する</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    <!-- modal -->
-                </form>
+                </div>
+                <!-- modal -->
             </div>
         </div>
     </div>
