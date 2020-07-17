@@ -33,7 +33,7 @@ class UserDeleteMail extends Mailable
             ->subject('退会手続き完了のお知らせ') // メールのタイトル
             ->text('emails.user_delete') // テンプレート（平文）
             ->with([
-                'register_url' => route('register'), 
+                'register_url' => route('register'), // 会員登録のURL
             ]);
     }
 }
