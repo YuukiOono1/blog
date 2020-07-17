@@ -34,7 +34,7 @@ class UserUpdateMail extends Mailable
     {
         return $this
             ->from(config('mail.from.address'), config('mail.from.name')) // 送信元のメールアドレス
-            ->subject('ユーザー情報の編集') // メールのタイトル
+            ->subject('ユーザー情報の更新') // メールのタイトル
             ->text('emails.user_update') // テンプレート（平文)
             ->with([
                 'new_name' => $this->new_name,
