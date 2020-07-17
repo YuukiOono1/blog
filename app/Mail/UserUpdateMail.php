@@ -11,8 +11,8 @@ class UserUpdateMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $new_name;
-    public $new_email;
+    public $new_name; // 新しいユーザーネーム
+    public $new_email; // 新しいユーザーメールアドレス
 
     /**
      * Create a new message instance.
