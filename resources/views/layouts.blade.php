@@ -20,7 +20,9 @@
     @include('nav')
     <div id="main">
         <div class="container">
-            @yield('content')
+            <div id="app">
+                @yield('content')
+            </div>
         </div>
     </div>
 
@@ -33,7 +35,9 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js"></script>
     <!-- Custom JavaScript(original) -->
-    <script src="{{ asset('js/slide.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+
+    @yield('javascript')
 </body>
 
 </html>

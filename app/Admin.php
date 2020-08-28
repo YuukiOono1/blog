@@ -2,14 +2,10 @@
 
 namespace App;
 
-use App\Mail\PasswordResetMail;
-use App\Notifications\PasswordResetNotification;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Admin extends Authenticatable
 {
     use Notifiable;
 
@@ -39,19 +35,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function post(): HasMany
-    {
-        return $this->hasMany('App\Post');
-    }
-
-    public function favorites(): BelongstoMany
-    {
-        return $this->belongsToMany('App\Post', 'favorites')->withTimestamps();
-    }
-
-    public function sendPasswordResetNotification($token)
-    {
-        $this->notify(new PasswordResetNotification($token, new PasswordResetMail()));
-    }
 }

@@ -29,6 +29,11 @@
                 <a href="{{ route('posts.show', ['post' => $post]) }}">
                     <img class="card-img-top" src="data:image/png;base64, {{ $post->file_name }}" height=200 alt="image">
                 </a>
+                <!--jsonで値としてVueに渡す-->
+                <post-favorite
+                    :initial-is-favorited-by='@json($post->isFavoritedBy(Auth::user()))'
+                >
+                </post-favorite>
             </div>
 
             <!--Card content-->

@@ -44,7 +44,7 @@ class PostController extends Controller
 
         // キーワードがなければ
         } else {
-            $posts = Post::orderby('created_at', 'desc')
+            $posts = Post::orderby('new_id', 'asc')
                             ->paginate(6);
         }
         
@@ -126,5 +126,24 @@ class PostController extends Controller
     public function show(Post $post)
     {
         return view('posts.show', ['post' => $post]);
+    }
+
+    public function test(Post $post)
+    {
+        return view('posts.test', ['post' => $post]);
+    }
+
+    public function sample(Post $post)
+    {
+        return view('posts.sample', ['post' => $post]);
+    }
+
+    public function check(Post $post, Request $request)
+    {
+        $data = $request->all();
+        $request->session()->put($data);
+        dd($data);
+
+        return view('posts.check', ['post' => $post, 'data' => $data]);
     }
 }

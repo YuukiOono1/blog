@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin\Auth; // Admin追加
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth; // ガードのカスタマイズで必須
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -27,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::ADMIN_HOME;
 
     /**
      * Create a new controller instance.
@@ -39,10 +40,20 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function showLoginForm()
+    {
+        return view('admin.auth.login');
+    }
+
     // ログアウト先を変更したい場合はuse AuthenticateUsers先のloggedOutメソッドをオーバーライドする　
     protected function loggedOut(Request $request)
     {
-        return redirect(route('posts.index'));
+        return redirect(route('admin.login'));
+    }
+
+    protected function guard()
+    {
+        return Auth::guard('admin');
     }
 
     // あるいはログアウトメソッドに追記

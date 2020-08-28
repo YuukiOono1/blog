@@ -21,3 +21,24 @@ Route::resource('/posts', 'PostController',
 Route::get('/categories/{category}', 'CategoryController@show')->name('categories.show');
 Route::resource('/users', 'UserController',
     ['only' => ['edit', 'update', 'destroy', 'show']])->middleware('auth');
+
+/*Route::prefix('admin')->as('admin.')->namespace('Admin')->group(function() {
+    Route::get('/login', 'LoginController@showLoginForm')->name('login');
+    Route::post('/login', 'LoginController@login')->name('login');
+    Route::middleware('auth:admin')->group(function() {
+        Route::post('/logout', 'LoginController@logout')->name('logout');
+        Route::get('/', 'AdminController@index')->name('index');
+    });
+});*/
+
+Route::prefix('admin')->namespace('Admin')
+->name('admin.')->group(function(){
+    Auth::routes();
+
+    Route::resource('/', 'AdminController');
+    Route::post('/sort', 'AdminController@sort')->name('sort');
+});
+
+
+Route::get('/test', 'PostController@test');
+Route::get('/sample', 'PostController@sample');
